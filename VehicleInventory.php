@@ -54,7 +54,7 @@ class VehicleInventory
     private function guzzle()
     {
         $client = new Client([
-            'base_uri' => 'http://vehicleinventory.app/api/'.$this->clientKey.'/',
+            'base_uri' => 'https://vehicleinventory.app/api/'.$this->clientKey.'/',
             'headers'  => [
                 'X-Client-Key' => $this->clientKey,
                 'User-Agent' => 'PHP-VehicleInventory-Client PHP/' . PHP_VERSION,
