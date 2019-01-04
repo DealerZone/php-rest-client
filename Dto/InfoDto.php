@@ -1,6 +1,6 @@
 <?php
 
-namespace VehicleInventory\Client;
+namespace VehicleInventory\Client\Dto;
 
 /**
  * @property-read string key
