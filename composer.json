@@ -1,13 +1,13 @@
 {
-    "name": "vehicleinventory/client",
+    "name": "dealerinventory/client",
     "type": "library",
     "license": "MIT",
     "keywords": ["dealer", "vehicle"],
-    "description": "PHP client for the vehicleinventory.app service API.",
+    "description": "PHP client for the dealerinventory.app service API.",
     "require": {},
     "autoload": {
         "psr-4": {
-            "VehicleInventory\\Client\\": "."
+            "DealerInventory\\Client\\": "."
         }
     },
     "minimum-stability": "dev",

@@ -1,15 +1,15 @@
 <?php
 
-namespace VehicleInventory\Client;
+namespace DealerInventory\Client;
 
 use JsonSerializable;
 use RuntimeException;
 use GuzzleHttp\Client;
 use Illuminate\Support\Collection;
-use VehicleInventory\Client\Dto\InfoDto;
-use VehicleInventory\Client\Dto\CategoryDto;
+use DealerInventory\Client\Dto\InfoDto;
+use DealerInventory\Client\Dto\CategoryDto;
 
-class VehicleInventory
+class DealerInventory
 {
     public function __construct(string $clientKey)
     {
@@ -54,10 +54,10 @@ class VehicleInventory
     private function guzzle()
     {
         $client = new Client([
-            'base_uri' => 'https://vehicleinventory.app/api/'.$this->clientKey.'/',
+            'base_uri' => 'https://dealerinventory.app/api/'.$this->clientKey.'/',
             'headers'  => [
                 'X-Client-Key' => $this->clientKey,
-                'User-Agent' => 'PHP-VehicleInventory-Client PHP/' . PHP_VERSION,
+                'User-Agent' => 'PHP-DealerInventory-Client PHP/' . PHP_VERSION,
             ]
         ]);
 

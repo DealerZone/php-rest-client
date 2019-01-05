@@ -1,6 +1,6 @@
 <?php
 
-namespace VehicleInventory\Client\Dto;
+namespace DealerInventory\Client\Dto;
 
 use JsonSerializable;
 use RuntimeException;
