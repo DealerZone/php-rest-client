@@ -4,7 +4,9 @@
     "license": "MIT",
     "keywords": ["dealer", "vehicle"],
     "description": "PHP client for the dealerinventory.app service API.",
-    "require": {},
+    "require": {
+        "tightenco/collect" : "*"
+    },
     "autoload": {
         "psr-4": {
             "DealerInventory\\Client\\": "."

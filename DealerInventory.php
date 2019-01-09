@@ -5,8 +5,10 @@ namespace DealerInventory\Client;
 use JsonSerializable;
 use RuntimeException;
 use GuzzleHttp\Client;
-use Illuminate\Support\Collection;
 use DealerInventory\Client\Dto\InfoDto;
+use DealerInventory\Client\Dto\MakeDto;
+use Tightenco\Collect\Support\Collection;
+use DealerInventory\Client\Dto\VehicleDto;
 use DealerInventory\Client\Dto\CategoryDto;
 
 class DealerInventory
@@ -25,7 +27,63 @@ class DealerInventory
             $this->get('info')
         );
     }
+
+    /**
+     * @return MakeDto
+     */
+    public function makes()
+    {
+        return new MakeDto(
+            $this->get('make')
+        );
+    }
     
+    /**
+     * @return VehicleDto
+     */
+    public function show($slug)
+    {
+        return new VehicleDto(
+            $this->get('vehicle/show/'.$slug)
+        );
+    }
+
+    /**
+     * @return Collection|VehicleDto[]
+     */
+    public function listed()
+    {
+        return (new Collection(
+            $this->get('vehicle/listed')
+        ))->map(function($value){
+            return new VehicleDto($value);
+        });
+    }
+
+    /**
+     * @return Collection|VehicleDto[]
+     */
+    public function sold()
+    {
+        return (new Collection(
+            $this->get('vehicle/sold')
+        ))->map(function($value){
+            return new VehicleDto($value);
+        });
+    }
+
+    /**
+     * @return Collection|VehicleDto[]
+     */
+    public function featured()
+    {
+        return (new Collection(
+            $this->get('vehicle/featured')
+        ))->map(function($value){
+            return new VehicleDto($value);
+        });
+    }
+
     /**
      * @return Collection
      */
