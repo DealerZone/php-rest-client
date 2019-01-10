@@ -7,6 +7,7 @@ use RuntimeException;
 use GuzzleHttp\Client;
 use DealerInventory\Client\Dto\InfoDto;
 use DealerInventory\Client\Dto\MakeDto;
+use DealerInventory\Client\Dto\ModelDto;
 use Tightenco\Collect\Support\Collection;
 use DealerInventory\Client\Dto\VehicleDto;
 use DealerInventory\Client\Dto\CategoryDto;
@@ -29,13 +30,18 @@ class DealerInventory
     }
 
     /**
-     * @return MakeDto
+     * @return Collection|MakeDto[]
      */
     public function makes()
     {
-        return new MakeDto(
+        return (new Collection(
             $this->get('make')
-        );
+        ))->map(function($value){
+            $value['models'] = (new Collection($value['models']))->map(function($value){
+                return new ModelDto($value);
+            });
+            return new MakeDto($value);
+        });
     }
     
     /**
