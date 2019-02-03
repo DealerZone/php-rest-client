@@ -14,6 +14,8 @@ use DealerInventory\Client\Dto\CategoryDto;
 
 class DealerInventory
 {
+    private static $domain = 'https://dealerinventory.app';
+
     public function __construct(string $clientKey)
     {
         $this->clientKey = $clientKey;
@@ -47,7 +49,7 @@ class DealerInventory
     /**
      * @return VehicleDto
      */
-    public function show($slug)
+    public function vehicle($slug)
     {
         return new VehicleDto(
             $this->get('vehicle/show/'.$slug)
@@ -118,7 +120,7 @@ class DealerInventory
     private function guzzle()
     {
         $client = new Client([
-            'base_uri' => 'https://dealerinventory.app/api/'.$this->clientKey.'/',
+            'base_uri' => self::$domain.'/api/'.$this->clientKey.'/',
             'headers'  => [
                 'X-Client-Key' => $this->clientKey,
                 'User-Agent' => 'PHP-DealerInventory-Client PHP/' . PHP_VERSION,
