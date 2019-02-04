@@ -2,8 +2,7 @@
 
 namespace DealerInventory\Client;
 
-use JsonSerializable;
-use RuntimeException;
+use DealerInventory\Client\Collection\PaginationCollection;
 use GuzzleHttp\Client;
 use DealerInventory\Client\Dto\InfoDto;
 use DealerInventory\Client\Dto\MakeDto;
@@ -16,6 +15,8 @@ class DealerInventory
 {
     private static $domain = 'https://dealerinventory.app';
 
+    private $clientKey;
+
     public function __construct(string $clientKey)
     {
         $this->clientKey = $clientKey;
@@ -27,7 +28,7 @@ class DealerInventory
     public function info()
     {
         return new InfoDto(
-            $this->get('info')
+            $this->getData('info')
         );
     }
 
@@ -37,7 +38,7 @@ class DealerInventory
     public function makes()
     {
         return (new Collection(
-            $this->get('make')
+            $this->getData('make')
         ))->map(function($value){
             $value['models'] = (new Collection($value['models']))->map(function($value){
                 return new ModelDto($value);
@@ -52,30 +53,40 @@ class DealerInventory
     public function vehicle($slug)
     {
         return new VehicleDto(
-            $this->get('vehicle/show/'.$slug)
+            $this->getData('vehicle/show/'.$slug)
         );
     }
 
     /**
-     * @return Collection|VehicleDto[]
+     * @return PaginationCollection|VehicleDto[]
      */
-    public function listed()
+    public function listed(int $page)
     {
-        return (new Collection(
-            $this->get('vehicle/listed')
-        ))->map(function($value){
+        $result = $this->get("vehicle/listed?page=$page");
+
+        $collection = new PaginationCollection($result['data']);
+        $collection
+            ->setLinks($result['links'])
+            ->setMeta($result['meta']);
+
+        return $collection->map(function($value){
             return new VehicleDto($value);
         });
     }
 
     /**
-     * @return Collection|VehicleDto[]
+     * @return PaginationCollection|VehicleDto[]
      */
-    public function sold()
+    public function sold(int $page)
     {
-        return (new Collection(
-            $this->get('vehicle/sold')
-        ))->map(function($value){
+        $result = $this->get("vehicle/sold?page=$page");
+
+        $collection = new PaginationCollection($result['data']);
+        $collection
+            ->setLinks($result['links'])
+            ->setMeta($result['meta']);
+
+        return $collection->map(function($value){
             return new VehicleDto($value);
         });
     }
@@ -86,7 +97,7 @@ class DealerInventory
     public function featured()
     {
         return (new Collection(
-            $this->get('vehicle/featured')
+            $this->getData('vehicle/featured')
         ))->map(function($value){
             return new VehicleDto($value);
         });
@@ -97,14 +108,14 @@ class DealerInventory
      */
     public function categories()
     {
-        $data = $this->get('category');
+        $data = $this->getData('category');
 
-        return (new Collection($data))->map(function($attributes){
+        return (new PaginationCollection($data))->map(function($attributes){
             return new CategoryDto($attributes);
         });
     }
 
-    private function get($path): array
+    private function get(string $path): array
     {
         $res = $this->guzzle()->request('GET', $path);
 
@@ -112,9 +123,14 @@ class DealerInventory
             throw new \Exception($res->getBody()->getContents());
         }
 
-        $data = \GuzzleHttp\json_decode($res->getBody()->getContents(), true)['data'];
+        $result = \GuzzleHttp\json_decode($res->getBody()->getContents(), true);
 
-        return $data;
+        return $result;
+    }
+
+    private function getData(string $path): array
+    {
+        return $this->get($path)['data'];
     }
 
     private function guzzle()

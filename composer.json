@@ -5,7 +5,8 @@
     "keywords": ["dealer", "vehicle"],
     "description": "PHP client for the dealerinventory.app service API.",
     "require": {
-        "tightenco/collect" : "*"
+        "tightenco/collect" : "*",
+        "guzzlehttp/guzzle" : "*"
     },
     "autoload": {
         "psr-4": {
