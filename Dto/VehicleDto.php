@@ -21,8 +21,10 @@ namespace DealerInventory\Client\Dto;
  * @property-read string torque_rating
  * @property-read string engine_cylinders
  * @property-read string engine_displacement
- * @property-read string engine
- * @property-read string fuel_econony
+ * @property-read string transmission
+ * @property-read string interior_color
+ * @property-read string exterior_color
+ * @property-read string fuel_economy
  * @property-read string fuel_type
  * @property-read string msrp
  * @property-read string title_status
@@ -39,6 +41,7 @@ namespace DealerInventory\Client\Dto;
  * @property-read boolean is_clean
  * @property-read boolean is_junk
  * @property-read boolean is_sold
+ * @property-read boolean is_on_hold
  * @property-read array installed_options
  * @property-read object main_image
  * @property-read object[] images
