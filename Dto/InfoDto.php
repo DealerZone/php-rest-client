@@ -2,6 +2,8 @@
 
 namespace DealerInventory\Client\Dto;
 
+use DealerInventory\Common\Dto;
+
 /**
  * @property-read string key
  * @property-read string name
