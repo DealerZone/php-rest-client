@@ -58,11 +58,15 @@ class DealerInventory
     }
 
     /**
+     * @param integer page
+     * @param Filters|array filters
      * @return PaginationCollection|VehicleDto[]
      */
-    public function listed(int $page)
+    public function listed(int $page = 1, $filters = [])
     {
-        $result = $this->get("vehicle/listed?page=$page");
+        $params = http_build_query((array) $filters);
+
+        $result = $this->get("vehicle/listed?page=$page&$params");
 
         $collection = new PaginationCollection($result['data']);
         $collection
@@ -77,7 +81,7 @@ class DealerInventory
     /**
      * @return PaginationCollection|VehicleDto[]
      */
-    public function sold(int $page)
+    public function sold(int $page = 1)
     {
         $result = $this->get("vehicle/sold?page=$page");
 
