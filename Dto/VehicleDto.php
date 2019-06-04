@@ -2,8 +2,6 @@
 
 namespace DealerInventory\Client\Dto;
 
-use DealerInventory\Common\Dto;
-
 /**
  * @property-read string slug
  * @property-read string name
@@ -35,20 +33,21 @@ use DealerInventory\Common\Dto;
  * @property-read string secondary_damage_type
  * @property-read string airbag_status
  * @property-read boolean airbag_deployed
- * @property-read integer miles
- * @property-read string miles_status
- * @property-read string location
+ * @property-read string mileage
  * @property-read string status
  * @property-read boolean is_on_sale
+ * @property-read boolean is_featured
  * @property-read boolean is_clean
  * @property-read boolean is_junk
  * @property-read boolean is_sold
  * @property-read boolean is_on_hold
+ * @property-read boolean is_repaired
  * @property-read array installed_options
- * @property-read object main_image
- * @property-read object[] images
+ * @property-read LocationDto location
+ * @property-read ImageDto main_image
+ * @property-read ImageDto[] images
  */
 class VehicleDto extends Dto
 {
-    
+
 }

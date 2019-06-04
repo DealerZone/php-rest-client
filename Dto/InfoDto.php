@@ -2,8 +2,6 @@
 
 namespace DealerInventory\Client\Dto;
 
-use DealerInventory\Common\Dto;
-
 /**
  * @property-read string key
  * @property-read string name
@@ -13,5 +11,5 @@ use DealerInventory\Common\Dto;
  */
 class InfoDto extends Dto
 {
-    
+
 }

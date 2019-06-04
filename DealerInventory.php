@@ -3,6 +3,8 @@
 namespace DealerInventory\Client;
 
 use DealerInventory\Client\Collection\PaginationCollection;
+use DealerInventory\Client\Dto\MessageDto;
+use DealerInventory\Client\Exception\DealerInventoryServiceException;
 use GuzzleHttp\Client;
 use DealerInventory\Client\Dto\InfoDto;
 use DealerInventory\Client\Dto\MakeDto;
@@ -46,7 +48,7 @@ class DealerInventory
             return new MakeDto($value);
         });
     }
-    
+
     /**
      * @return VehicleDto
      */
@@ -124,12 +126,46 @@ class DealerInventory
         $res = $this->guzzle()->request('GET', $path);
 
         if($res->getStatusCode() != 200) {
-            throw new \Exception($res->getBody()->getContents());
+            throw new DealerInventoryServiceException($res->getBody()->getContents());
         }
 
         $result = \GuzzleHttp\json_decode($res->getBody()->getContents(), true);
 
         return $result;
+    }
+
+    /**
+     * @param MessageDto $message
+     */
+    public function message($message)
+    {
+        if(is_array($message)) {
+            $message = new MessageDto($message);
+        }
+
+        $res = $this->guzzle()->post('contact/message', [
+            'json'=>$message,
+        ]);
+
+        if($res->getStatusCode() != 204) {
+            throw new DealerInventoryServiceException($res->getBody()->getContents());
+        }
+    }
+
+    public function inquire(string $vehicleSlug, MessageDto $message)
+    {
+        if(is_array($message)) {
+            $message = new MessageDto($message);
+        }
+
+        $message->slug = $vehicleSlug;
+        $res = $this->guzzle()->post("contact/inquire/$vehicleSlug", [
+            'json'=>$message,
+        ]);
+
+        if($res->getStatusCode() != 204) {
+            throw new DealerInventoryServiceException($res->getBody()->getContents());
+        }
     }
 
     private function getData(string $path): array

@@ -2,8 +2,6 @@
 
 namespace DealerInventory\Client\Dto;
 
-use DealerInventory\Common\Dto;
-
 /**
  * @property-read string slug
  * @property-read string name
@@ -11,5 +9,5 @@ use DealerInventory\Common\Dto;
  */
 class ModelDto extends Dto
 {
-    
+
 }
