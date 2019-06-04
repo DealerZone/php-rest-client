@@ -2,7 +2,7 @@
 
 namespace DealerInventory\Client\Collection;
 
-use DealerInventory\Common\Dto;
+use DealerInventory\Client\Dto\Dto;
 
 /**
  * @property-read string current_page
