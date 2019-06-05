@@ -49,5 +49,8 @@ namespace DealerInventory\Client\Dto;
  */
 class VehicleDto extends Dto
 {
-
+    protected $casts = [
+        'main_image' => ImageDto::class,
+        'location' => LocationDto::class,
+    ];
 }

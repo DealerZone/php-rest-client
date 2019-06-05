@@ -7,7 +7,7 @@ namespace DealerInventory\Client\Dto;
  * @property string medium
  * @property string large
  */
-class ImageDto
+class ImageDto extends Dto
 {
 
 }
