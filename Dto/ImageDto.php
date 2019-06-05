@@ -3,9 +3,9 @@
 namespace DealerInventory\Client\Dto;
 
 /**
- * @property string thumb
- * @property string result
- * @property string full
+ * @property string small
+ * @property string medium
+ * @property string large
  */
 class ImageDto
 {
