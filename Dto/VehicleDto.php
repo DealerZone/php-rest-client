@@ -2,6 +2,8 @@
 
 namespace DealerInventory\Client\Dto;
 
+use Tightenco\Collect\Support\Collection;
+
 /**
  * @property-read string slug
  * @property-read string name
@@ -45,12 +47,13 @@ namespace DealerInventory\Client\Dto;
  * @property-read array installed_options
  * @property-read LocationDto location
  * @property-read ImageDto main_image
- * @property-read ImageDto[] images
+ * @property-read ImageDto[]|Collection images
  */
 class VehicleDto extends Dto
 {
     protected $casts = [
         'main_image' => ImageDto::class,
         'location' => LocationDto::class,
+        'images' => [ImageDto::class],
     ];
 }

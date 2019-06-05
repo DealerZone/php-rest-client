@@ -3,6 +3,7 @@
 namespace DealerInventory\Client;
 
 use DealerInventory\Client\Collection\PaginationCollection;
+use DealerInventory\Client\Dto\ImageDto;
 use DealerInventory\Client\Dto\MessageDto;
 use DealerInventory\Client\Exception\DealerInventoryServiceException;
 use GuzzleHttp\Client;
@@ -66,6 +67,7 @@ class DealerInventory
      */
     public function listed(int $page = 1, $filters = [])
     {
+        unset($filters['page']);
         $params = http_build_query((array) $filters);
 
         $result = $this->get("vehicle/listed?page=$page&$params");

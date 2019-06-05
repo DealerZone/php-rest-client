@@ -4,6 +4,7 @@ namespace DealerInventory\Client\Dto;
 
 use JsonSerializable;
 use RuntimeException;
+use Tightenco\Collect\Support\Collection;
 
 abstract class Dto implements JsonSerializable
 {
@@ -68,7 +69,7 @@ abstract class Dto implements JsonSerializable
      */
     public function __set($field, $value)
     {
-        throw new RuntimeException('Fields are immutable');
+        throw new RuntimeException('DTO Fields are Immutable');
     }
 
     /**
@@ -100,8 +101,9 @@ abstract class Dto implements JsonSerializable
 
             // maybe, if numeric index, do a collection of objects
             // then if string indexed to a object
-            if(is_a($value, $castTo)) {
-                // already set, do nothing
+            // that might be a better way, but i don't know how to handle empty arrays
+            if(is_array($castTo)) {
+                $value = (new Collection($value))->mapInto($castTo[0]);
             } elseif(class_exists($castTo)) {
                 $value = new $castTo($value);
             }
