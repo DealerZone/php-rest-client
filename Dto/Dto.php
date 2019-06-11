@@ -4,9 +4,10 @@ namespace DealerInventory\Client\Dto;
 
 use JsonSerializable;
 use RuntimeException;
+use Tightenco\Collect\Contracts\Support\Arrayable;
 use Tightenco\Collect\Support\Collection;
 
-abstract class Dto implements JsonSerializable
+abstract class Dto implements JsonSerializable, Arrayable
 {
     /** @var array */
     protected $values = [];
