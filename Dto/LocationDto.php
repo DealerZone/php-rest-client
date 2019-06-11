@@ -3,10 +3,10 @@
 namespace DealerInventory\Client\Dto;
 
 /**
- * @property string slug
- * @property string name
- * @property string city
- * @property string description
+ * @property-read string slug
+ * @property-read string name
+ * @property-read string city
+ * @property-read string description
  */
 class LocationDto extends Dto
 {
