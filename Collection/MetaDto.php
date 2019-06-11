@@ -13,6 +13,7 @@ use DealerInventory\Client\Dto\Dto;
  * @property-read string to
  * @property-read string total
  * @property-read string redirect
+ * @property-read string query
  */
 class MetaDto extends Dto
 {

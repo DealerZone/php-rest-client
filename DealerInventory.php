@@ -72,10 +72,11 @@ class DealerInventory
 
         $result = $this->get("vehicle/listed?page=$page&$params");
 
-        $collection = new PaginationCollection($result['data']);
-        $collection
-            ->setLinks($result['links'])
-            ->setMeta($result['meta']);
+        $collection = new PaginationCollection(
+            $result['data'],
+            $result['meta'],
+            $result['links']
+        );
 
         return $collection->map(function($value){
             return new VehicleDto($value);

@@ -14,8 +14,15 @@ abstract class Dto implements JsonSerializable
     /** @var array */
     protected $casts = [];
 
-    public function __construct(iterable $values = [])
+    /**
+     * @param iterable $values
+     */
+    public function __construct($values = [])
     {
+        if($values instanceof self) {
+            $values = $values->toArray();
+        }
+
         $this->fill($values);
     }
 
