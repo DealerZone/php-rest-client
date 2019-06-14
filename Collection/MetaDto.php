@@ -14,6 +14,7 @@ use DealerInventory\Client\Dto\Dto;
  * @property-read string total
  * @property-read string redirect
  * @property-read string query
+ * @property-read array filters
  */
 class MetaDto extends Dto
 {
