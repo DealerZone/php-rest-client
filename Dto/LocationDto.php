@@ -8,7 +8,7 @@ namespace DealerInventory\Client\Dto;
  * @property-read string city
  * @property-read string description
  */
-class LocationDto extends Dto
+class LocationDto extends Base
 {
 
 }

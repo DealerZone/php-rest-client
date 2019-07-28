@@ -7,7 +7,7 @@ namespace DealerInventory\Client\Dto;
  * @property-read string name
  * @property-read int stock
  */
-class ModelDto extends Dto
+class ModelDto extends Base
 {
 
 }

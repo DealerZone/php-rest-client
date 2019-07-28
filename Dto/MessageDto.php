@@ -9,7 +9,7 @@ namespace DealerInventory\Client\Dto;
  * @property string how
  * @property string message
  */
-class MessageDto extends Dto
+class MessageDto extends Base
 {
 
 }

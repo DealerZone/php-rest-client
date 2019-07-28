@@ -8,7 +8,7 @@ namespace DealerInventory\Client\Dto;
  * @property-read int stock
  * @property-read ModelDto[] models
  */
-class MakeDto extends Dto
+class MakeDto extends Base
 {
 
 }

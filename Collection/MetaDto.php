@@ -2,7 +2,7 @@
 
 namespace DealerInventory\Client\Collection;
 
-use DealerInventory\Client\Dto\Dto;
+use DealerInventory\Client\Dto\Base;
 
 /**
  * @property-read string current_page
@@ -16,7 +16,7 @@ use DealerInventory\Client\Dto\Dto;
  * @property-read string query
  * @property-read array filters
  */
-class MetaDto extends Dto
+class MetaDto extends Base
 {
 
 }

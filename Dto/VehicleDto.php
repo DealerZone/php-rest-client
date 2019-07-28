@@ -49,7 +49,7 @@ use Tightenco\Collect\Support\Collection;
  * @property-read ImageDto main_image
  * @property-read ImageDto[]|Collection images
  */
-class VehicleDto extends Dto
+class VehicleDto extends Base
 {
     protected $casts = [
         'main_image' => ImageDto::class,

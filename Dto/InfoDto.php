@@ -12,7 +12,7 @@ use Tightenco\Collect\Support\Collection;
  * @property-read string paypal_email
  * @property-read Collection|LocationDto[] locations
  */
-class InfoDto extends Dto
+class InfoDto extends Base
 {
 
 }

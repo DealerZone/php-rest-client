@@ -7,7 +7,7 @@ use RuntimeException;
 use Tightenco\Collect\Contracts\Support\Arrayable;
 use Tightenco\Collect\Support\Collection;
 
-abstract class Dto implements JsonSerializable, Arrayable
+abstract class Base implements JsonSerializable, Arrayable
 {
     /** @var array */
     protected $values = [];
@@ -77,7 +77,7 @@ abstract class Dto implements JsonSerializable, Arrayable
      */
     public function __set($field, $value)
     {
-        throw new RuntimeException('DTO Fields are Immutable');
+        throw new RuntimeException("Cannot Update `{$field}` - Fields are Immutable");
     }
 
     /**
