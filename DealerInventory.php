@@ -3,7 +3,6 @@
 namespace DealerInventory\Client;
 
 use DealerInventory\Client\Collection\PaginationCollection;
-use DealerInventory\Client\Dto\ImageDto;
 use DealerInventory\Client\Dto\MessageDto;
 use DealerInventory\Client\Exception\DealerInventoryServiceException;
 use GuzzleHttp\Client;
@@ -16,9 +15,12 @@ use DealerInventory\Client\Dto\CategoryDto;
 
 class DealerInventory
 {
-    private static $domain = 'https://dealerinventory.app';
+    private static $dns = 'https://dealerinventory.app';
 
     private $clientKey;
+
+    /** @var Client */
+    private $guzzle;
 
     public function __construct(string $clientKey)
     {
@@ -65,7 +67,7 @@ class DealerInventory
      * @param Filters|array filters
      * @return PaginationCollection|VehicleDto[]
      */
-    public function listed(int $page = 1, $filters = [])
+    public function listed(int $page, $filters = [])
     {
         unset($filters['page']);
         $params = http_build_query((array) $filters);
@@ -86,7 +88,7 @@ class DealerInventory
     /**
      * @return PaginationCollection|VehicleDto[]
      */
-    public function sold(int $page = 1)
+    public function sold(int $page)
     {
         $result = $this->get("vehicle/sold?page=$page");
 
@@ -178,14 +180,27 @@ class DealerInventory
 
     private function guzzle()
     {
-        $client = new Client([
-            'base_uri' => self::$domain.'/api/'.$this->clientKey.'/',
-            'headers'  => [
-                'X-Client-Key' => $this->clientKey,
-                'User-Agent' => 'PHP-DealerInventory-Client PHP/' . PHP_VERSION,
-            ]
-        ]);
+        if(empty($this->guzzle)) {
+            $this->guzzle = new Client([
+                'base_uri' => self::dns() . '/api/' . $this->clientKey . '/',
+                'headers' => [
+                    'X-Client-Key' => $this->clientKey,
+                    'User-Agent' => 'PHP-DealerInventory-Client PHP/' . PHP_VERSION,
+                ]
+            ]);
+        }
 
-        return $client;
+        return $this->guzzle;
+    }
+
+    private static function dns()
+    {
+        $dns = getenv('DEALERINVENTORY_DNS');
+
+        if($dns) {
+            return $dns;
+        }
+
+        return self::$dns;
     }
 }

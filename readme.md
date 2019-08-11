@@ -1,18 +1,30 @@
 # DealerInventory.app Client
 
+PHP Client to connector for <https://deaperinventory.app>
+
 ```
 composer require dealerinventory/client
 ```
 
-Example Usage:
+### Quick Example:
 
 ```
-$client = new DealerInventory('example');
+$client = new DealerInventory('client_key');
 
 $info = $client->info();
 
 echo $info->name;
 ``` 
 
-Client to connection for <https://deaperinventory.app>
+### Further Examples 
+```
+// first page of your listed vehicles
+$vehicles = $client->listed(1); // first page
 
+$vehicles->each(function($vehicle) {
+    echo $vehicle->name;
+});
+
+// get a single vehicle
+$vehicle = $client->vehicle('my-vehicle-slug');
+```
