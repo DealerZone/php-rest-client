@@ -10,7 +10,7 @@ use DealerInventory\Client\Dto\Base;
  * @property-read string prev
  * @property-read string next
  */
-class LinksDto extends Base
+class Links extends Base
 {
 
 }

@@ -1,6 +1,6 @@
 # DealerInventory.app Client
 
-PHP Client to connector for <https://deaperinventory.app>
+PHP Client to connector for <https://dealerinventory.app> Dealer Inventory Management
 
 ```
 composer require dealerinventory/client

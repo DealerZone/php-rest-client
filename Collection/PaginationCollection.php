@@ -6,10 +6,10 @@ use Tightenco\Collect\Support\Collection;
 
 class PaginationCollection extends Collection
 {
-    /** @var LinksDto */
+    /** @var Links */
     private $links;
 
-    /** @var MetaDto */
+    /** @var Meta */
     private $meta;
 
     public function __construct($data = [], $meta = null, $links = null)
@@ -26,7 +26,7 @@ class PaginationCollection extends Collection
     }
 
     /**
-     * @return LinksDto
+     * @return Links
      */
     public function links()
     {
@@ -34,7 +34,7 @@ class PaginationCollection extends Collection
     }
 
     /**
-     * @return MetaDto
+     * @return Meta
      */
     public function meta()
     {
@@ -47,7 +47,7 @@ class PaginationCollection extends Collection
      */
     public function setLinks($links)
     {
-        $this->links = new LinksDto($links);
+        $this->links = new Links($links);
         return $this;
     }
 
@@ -58,7 +58,7 @@ class PaginationCollection extends Collection
     public function setMeta($meta)
     {
         if($meta) {
-            $this->meta = new MetaDto($meta);
+            $this->meta = new Meta($meta);
         }
         return $this;
     }

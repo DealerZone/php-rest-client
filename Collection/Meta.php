@@ -16,7 +16,7 @@ use DealerInventory\Client\Dto\Base;
  * @property-read string query
  * @property-read array filters
  */
-class MetaDto extends Base
+class Meta extends Base
 {
 
 }
