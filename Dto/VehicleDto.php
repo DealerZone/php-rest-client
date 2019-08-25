@@ -34,7 +34,6 @@ use Tightenco\Collect\Support\Collection;
  * @property-read string damage_type
  * @property-read string secondary_damage_type
  * @property-read string airbag_status
- * @property-read boolean airbag_deployed
  * @property-read string mileage
  * @property-read string status
  * @property-read boolean is_on_sale
