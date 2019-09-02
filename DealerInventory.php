@@ -149,7 +149,7 @@ class DealerInventory
         }
 
         $res = $this->guzzle()->post('contact/message', [
-            'json'=>$message,
+            'json'=>$message->toArray(),
         ]);
 
         if($res->getStatusCode() != 204) {
@@ -171,6 +171,11 @@ class DealerInventory
         if($res->getStatusCode() != 204) {
             throw new DealerInventoryServiceException($res->getBody()->getContents());
         }
+    }
+
+    public function _setGuzzle($guzzle)
+    {
+        $this->guzzle = $guzzle;
     }
 
     private function getData(string $path): array
