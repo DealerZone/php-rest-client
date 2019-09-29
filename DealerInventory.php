@@ -92,7 +92,9 @@ class DealerInventory
     {
         $result = $this->get("vehicle/listed/all");
 
-        return new Collection($result);
+        return (new Collection($result['data']))->map(function($value){
+            return new VehicleDto($value);
+        });
     }
 
     /**
