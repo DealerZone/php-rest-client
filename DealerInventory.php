@@ -86,6 +86,16 @@ class DealerInventory
     }
 
     /**
+     * @return Collection|VehicleDto[]
+     */
+    public function all()
+    {
+        $result = $this->get("vehicle/listed/all");
+
+        return new Collection($result);
+    }
+
+    /**
      * @return PaginationCollection|VehicleDto[]
      */
     public function sold(int $page)
