@@ -38,12 +38,13 @@ class DealerInventory
     }
 
     /**
+     * @param boolean all return all makes, even ones with no stock
      * @return Collection|MakeDto[]
      */
-    public function makes()
+    public function makes($all = false)
     {
         return (new Collection(
-            $this->getData('make')
+            $this->getData('make?all='.(int) $all)
         ))->map(function($value){
             $value['models'] = (new Collection($value['models']))->map(function($value){
                 return new ModelDto($value);
