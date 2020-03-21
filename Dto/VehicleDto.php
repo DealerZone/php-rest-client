@@ -29,6 +29,7 @@ use Tightenco\Collect\Support\Collection;
  * @property-read string fuel_economy
  * @property-read string fuel_type
  * @property-read string msrp
+ * @property-read string invoice
  * @property-read string title_status
  * @property-read string description
  * @property-read string damage_type
