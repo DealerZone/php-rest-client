@@ -176,7 +176,7 @@ class DealerInventory
             $message = new MessageDto($message);
         }
 
-        $message->slug = $vehicleSlug;
+        $message->vehicle_slug = $vehicleSlug;
         $res = $this->guzzle()->post("contact/inquire/$vehicleSlug", [
             'json'=>$message,
         ]);
