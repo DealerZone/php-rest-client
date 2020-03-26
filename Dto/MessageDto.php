@@ -9,9 +9,9 @@ namespace DealerInventory\Client\Dto;
  * @property string how
  * @property string offer
  * @property string message
- * @property string vehicle_slug
  */
 class MessageDto extends Base
 {
-
+    /** @var string */
+    public $vehicle_slug;
 }
