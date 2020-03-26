@@ -7,6 +7,7 @@ namespace DealerInventory\Client\Dto;
  * @property string email
  * @property string phone
  * @property string how
+ * @property string offer
  * @property string message
  */
 class MessageDto extends Base
