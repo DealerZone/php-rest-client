@@ -54,6 +54,15 @@ class DealerInventory
     }
 
     /**
+     * @param string $slug
+     * @return MakeDto
+     */
+    public function make($slug)
+    {
+        return new MakeDto($this->getData('make/'.$slug));
+    }
+
+    /**
      * @return VehicleDto
      */
     public function vehicle($slug)
@@ -144,7 +153,7 @@ class DealerInventory
         $res = $this->guzzle()->request('GET', $path);
 
         if($res->getStatusCode() != 200) {
-            throw new DealerInventoryServiceException($res->getBody()->getContents());
+            throw new DealerInventoryServiceException($res->getBody()->getContents(), $res->getStatusCode());
         }
 
         $result = \GuzzleHttp\json_decode($res->getBody()->getContents(), true);
@@ -166,7 +175,7 @@ class DealerInventory
         ]);
 
         if($res->getStatusCode() != 204) {
-            throw new DealerInventoryServiceException($res->getBody()->getContents());
+            throw new DealerInventoryServiceException($res->getBody()->getContents(), $res->getStatusCode());
         }
     }
 
@@ -182,7 +191,7 @@ class DealerInventory
         ]);
 
         if($res->getStatusCode() != 204) {
-            throw new DealerInventoryServiceException($res->getBody()->getContents());
+            throw new DealerInventoryServiceException($res->getBody()->getContents(), $res->getStatusCode());
         }
     }
 
