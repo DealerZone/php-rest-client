@@ -63,6 +63,15 @@ class DealerInventory
     }
 
     /**
+     * @param string $slug
+     * @return ModelDto
+     */
+    public function model($makeSlug, $modelSlug)
+    {
+        return new ModelDto($this->getData('make/'.$makeSlug.'/model/'.$modelSlug));
+    }
+
+    /**
      * @return VehicleDto
      */
     public function vehicle($slug)
