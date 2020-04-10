@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Client\Exception;
+namespace DealerInventory\Client\Exception;
 
 use RuntimeException;
 

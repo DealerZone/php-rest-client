@@ -3,6 +3,7 @@
 namespace DealerInventory\Client\Laravel;
 
 use DealerInventory\Client\DealerInventory;
+use DealerInventory\Client\Exception\DealerInventoryClientException;
 use Illuminate\Support\ServiceProvider;
 
 class DealerInventoryClientServiceProvider extends ServiceProvider
