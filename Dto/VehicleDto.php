@@ -8,6 +8,7 @@ use Tightenco\Collect\Support\Collection;
  * @property-read string slug
  * @property-read string name
  * @property-read string stock_number
+ * @property-read string url
  * @property-read string price
  * @property-read string vin
  * @property-read integer year

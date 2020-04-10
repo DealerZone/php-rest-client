@@ -14,7 +14,7 @@ class DealerInventoryClientServiceProvider extends ServiceProvider implements De
         $this->app->singleton(DealerInventory::class, function ($app) {
             $key = config('dealerinventory.client_key');
 
-            if(empty($key)) {
+            if(empty($key) && !app()->runningInConsole()) {
                 throw new DealerInventoryClientException('Config value not found. You must set config \'dealerinventory.client_key\'');
             }
 
