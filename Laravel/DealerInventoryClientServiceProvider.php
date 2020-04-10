@@ -4,13 +4,11 @@ namespace DealerInventory\Client\Laravel;
 
 use DealerInventory\Client\DealerInventory;
 use DealerInventory\Client\Exception\DealerInventoryClientException;
+use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 
-class DealerInventoryClientServiceProvider extends ServiceProvider
+class DealerInventoryClientServiceProvider extends ServiceProvider implements DeferrableProvider
 {
-    /** @var bool */
-    protected $defer = true;
-
     public function register()
     {
         $this->app->singleton(DealerInventory::class, function ($app) {
