@@ -9,6 +9,7 @@ use GuzzleHttp\Client;
 use DealerInventory\Client\Dto\InfoDto;
 use DealerInventory\Client\Dto\MakeDto;
 use DealerInventory\Client\Dto\ModelDto;
+use GuzzleHttp\RequestOptions;
 use Tightenco\Collect\Support\Collection;
 use DealerInventory\Client\Dto\VehicleDto;
 use DealerInventory\Client\Dto\CategoryDto;
@@ -157,19 +158,6 @@ class DealerInventory
         });
     }
 
-    private function get(string $path): array
-    {
-        $res = $this->guzzle()->request('GET', $path);
-
-        if($res->getStatusCode() != 200) {
-            throw new DealerInventoryServiceException($res->getBody()->getContents(), $res->getStatusCode());
-        }
-
-        $result = \GuzzleHttp\json_decode($res->getBody()->getContents(), true);
-
-        return $result;
-    }
-
     /**
      * @param MessageDto $message
      */
@@ -180,7 +168,7 @@ class DealerInventory
         }
 
         $res = $this->guzzle()->post('contact/message', [
-            'json'=>$message->toArray(),
+            RequestOptions::JSON => $message->toArray(),
         ]);
 
         if($res->getStatusCode() != 204) {
@@ -196,12 +184,25 @@ class DealerInventory
 
         $message->vehicle_slug = $vehicleSlug;
         $res = $this->guzzle()->post("contact/inquire/$vehicleSlug", [
-            'json'=>$message,
+            RequestOptions::JSON => $message,
         ]);
 
         if($res->getStatusCode() != 204) {
             throw new DealerInventoryServiceException($res->getBody()->getContents(), $res->getStatusCode());
         }
+    }
+
+    private function get(string $path): array
+    {
+        $res = $this->guzzle()->request('GET', $path);
+
+        if($res->getStatusCode() != 200) {
+            throw new DealerInventoryServiceException($res->getBody()->getContents(), $res->getStatusCode());
+        }
+
+        $result = \GuzzleHttp\json_decode($res->getBody()->getContents(), true);
+
+        return $result;
     }
 
     public function _setGuzzle($guzzle)
