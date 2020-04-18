@@ -27,8 +27,10 @@ use Tightenco\Collect\Support\Collection;
  * @property-read string transmission
  * @property-read string interior_color
  * @property-read string exterior_color
- * @property-read string fuel_economy
  * @property-read string fuel_type
+ * @property-read string tank_size
+ * @property-read string mpg_hwy
+ * @property-read string mpg_city
  * @property-read string msrp
  * @property-read string invoice
  * @property-read string title_status
