@@ -81,6 +81,16 @@ class CachedDealerInventoryClient extends DealerInventory
     /**
      * @inheritDoc
      */
+    public function related($slug)
+    {
+        return $this->cache->remember($this->cachePrefix.'.related.'.$slug, Carbon::now()->addMinutes($this->cacheMinutes * 4), function() use($slug) {
+            return parent::related($slug);
+        });
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function make($slug)
     {
         return $this->cache->remember($this->cachePrefix.'.make.'.$slug, Carbon::now()->addMinutes($this->cacheMinutes), function() use($slug) {

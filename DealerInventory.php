@@ -4,6 +4,7 @@ namespace DealerInventory\Client;
 
 use DealerInventory\Client\Collection\PaginationCollection;
 use DealerInventory\Client\Dto\MessageDto;
+use DealerInventory\Client\Dto\RelatedDto;
 use DealerInventory\Client\Exception\DealerInventoryServiceException;
 use GuzzleHttp\Client;
 use DealerInventory\Client\Dto\InfoDto;
@@ -80,6 +81,21 @@ class DealerInventory
         return new VehicleDto(
             $this->getData('vehicle/show/'.$slug)
         );
+    }
+
+    /**
+     * @param string $slug
+     * @return Collection|RelatedDto[]
+     */
+    public function related($slug)
+    {
+        $result = $this->get("vehicle/related/$slug");
+
+        $collection = new Collection($result['data']);
+
+        return $collection->map(function($value){
+            return new RelatedDto($value);
+        });
     }
 
     /**

@@ -52,6 +52,7 @@ use Tightenco\Collect\Support\Collection;
  * @property-read LocationDto location
  * @property-read ImageDto main_image
  * @property-read ImageDto[]|Collection images
+ * @property-read CategoryDto[]|Collection categories
  */
 class VehicleDto extends Base
 {
@@ -59,5 +60,6 @@ class VehicleDto extends Base
         'main_image' => ImageDto::class,
         'location' => LocationDto::class,
         'images' => [ImageDto::class],
+        'categories' => [CategoryDto::class],
     ];
 }
