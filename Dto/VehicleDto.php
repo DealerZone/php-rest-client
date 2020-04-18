@@ -33,6 +33,7 @@ use Tightenco\Collect\Support\Collection;
  * @property-read string invoice
  * @property-read string title_status
  * @property-read string description
+ * @property-read string description_one_line
  * @property-read string damage_type
  * @property-read string secondary_damage_type
  * @property-read string airbag_status

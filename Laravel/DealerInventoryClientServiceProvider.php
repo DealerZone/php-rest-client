@@ -2,7 +2,6 @@
 
 namespace DealerInventory\Client\Laravel;
 
-use App\Client\Laravel\CachedDealerInventoryClient;
 use DealerInventory\Client\DealerInventory;
 use DealerInventory\Client\Exception\DealerInventoryClientException;
 use Illuminate\Contracts\Support\DeferrableProvider;

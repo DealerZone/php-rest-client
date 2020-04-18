@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Client\Laravel;
+namespace DealerInventory\Client\Laravel;
 
 use Carbon\Carbon;
 use DealerInventory\Client\DealerInventory;
@@ -33,7 +33,7 @@ class CachedDealerInventoryClient extends DealerInventory
      */
     public function featured()
     {
-        $this->cache->remember($this->cachePrefix.'.featured', Carbon::now()->addMinutes($this->cacheMinutes), function() {
+        return $this->cache->remember($this->cachePrefix.'.featured', Carbon::now()->addMinutes($this->cacheMinutes), function() {
             return parent::featured();
         });
     }
@@ -43,7 +43,7 @@ class CachedDealerInventoryClient extends DealerInventory
      */
     public function sold(int $page)
     {
-        $this->cache->remember($this->cachePrefix.'.sold.'.$page, Carbon::now()->addMinutes($this->cacheMinutes * 2), function() use($page) {
+        return $this->cache->remember($this->cachePrefix.'.sold.'.$page, Carbon::now()->addMinutes($this->cacheMinutes * 2), function() use($page) {
             return parent::sold($page);
         });
     }
@@ -53,7 +53,7 @@ class CachedDealerInventoryClient extends DealerInventory
      */
     public function categories()
     {
-        $this->cache->remember($this->cachePrefix.'.categories', Carbon::now()->addMinutes($this->cacheMinutes * 10), function() {
+        return $this->cache->remember($this->cachePrefix.'.categories', Carbon::now()->addMinutes($this->cacheMinutes * 10), function() {
             return parent::categories();
         });
     }
@@ -63,7 +63,7 @@ class CachedDealerInventoryClient extends DealerInventory
      */
     public function info()
     {
-        $this->cache->remember($this->cachePrefix.'.info', Carbon::now()->addMinutes($this->cacheMinutes), function() {
+        return $this->cache->remember($this->cachePrefix.'.info', Carbon::now()->addMinutes($this->cacheMinutes), function() {
             return parent::info();
         });
     }
@@ -73,7 +73,7 @@ class CachedDealerInventoryClient extends DealerInventory
      */
     public function vehicle($slug)
     {
-        $this->cache->remember($this->cachePrefix.'.vehicle.'.$slug, Carbon::now()->addMinutes($this->cacheMinutes), function() use($slug) {
+        return $this->cache->remember($this->cachePrefix.'.vehicle.'.$slug, Carbon::now()->addMinutes($this->cacheMinutes), function() use($slug) {
             return parent::vehicle($slug);
         });
     }
@@ -83,7 +83,7 @@ class CachedDealerInventoryClient extends DealerInventory
      */
     public function make($slug)
     {
-        $this->cache->remember($this->cachePrefix.'.make.'.$slug, Carbon::now()->addMinutes($this->cacheMinutes), function() use($slug) {
+        return $this->cache->remember($this->cachePrefix.'.make.'.$slug, Carbon::now()->addMinutes($this->cacheMinutes), function() use($slug) {
             return parent::make($slug);
         });
     }
