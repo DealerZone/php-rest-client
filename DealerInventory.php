@@ -153,7 +153,7 @@ class DealerInventory
     {
         $data = $this->getData('category');
 
-        return (new PaginationCollection($data))->map(function($attributes){
+        return (new Collection($data))->map(function($attributes){
             return new CategoryDto($attributes);
         });
     }
