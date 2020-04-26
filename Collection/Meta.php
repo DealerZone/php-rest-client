@@ -14,6 +14,7 @@ use DealerInventory\Client\Dto\Base;
  * @property-read string total
  * @property-read string redirect
  * @property-read string query
+ * @property-read string sort
  * @property-read array filters
  */
 class Meta extends Base
