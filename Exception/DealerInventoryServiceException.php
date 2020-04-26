@@ -12,7 +12,6 @@ class DealerInventoryServiceException extends RuntimeException
     /** @var integer $responseCode */
     private $responseCode;
 
-
     public function __construct($responseBody, $responseCode)
     {
         $this->responseBody = \GuzzleHttp\json_decode($responseBody, true);

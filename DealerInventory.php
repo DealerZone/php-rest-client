@@ -10,6 +10,7 @@ use GuzzleHttp\Client;
 use DealerInventory\Client\Dto\InfoDto;
 use DealerInventory\Client\Dto\MakeDto;
 use DealerInventory\Client\Dto\ModelDto;
+use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\RequestOptions;
 use Tightenco\Collect\Support\Collection;
 use DealerInventory\Client\Dto\VehicleDto;
@@ -208,15 +209,45 @@ class DealerInventory
         }
     }
 
+    public function addToWaitingList(string $vehicleSlug, string $email)
+    {
+        $this->post("vehicle/waiting-list/$vehicleSlug", [
+            'email' => $email,
+        ]);
+    }
+
     private function get(string $path): array
     {
-        $res = $this->guzzle()->request('GET', $path);
-
-        if($res->getStatusCode() != 200) {
-            throw new DealerInventoryServiceException($res->getBody()->getContents(), $res->getStatusCode());
+        try {
+            $response = $this->guzzle()->request('GET', $path);
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
         }
 
-        $result = \GuzzleHttp\json_decode($res->getBody()->getContents(), true);
+        if($response->getStatusCode() != 200) {
+            throw new DealerInventoryServiceException($response->getBody()->getContents(), $response->getStatusCode());
+        }
+
+        $result = \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
+
+        return $result;
+    }
+
+    private function post(string $path, $body): array
+    {
+        try {
+            $response = $this->guzzle()->request('POST', $path, [
+                RequestOptions::JSON => $body,
+            ]);
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+        }
+
+        if(!in_array($response->getStatusCode(), [200, 201])) {
+            throw new DealerInventoryServiceException($response->getBody()->getContents(), $response->getStatusCode());
+        }
+
+        $result = \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
 
         return $result;
     }
