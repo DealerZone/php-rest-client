@@ -2,6 +2,7 @@
 
 namespace DealerInventory\Client\Exception;
 
+use GuzzleHttp\Exception\InvalidArgumentException;
 use RuntimeException;
 
 class DealerInventoryServiceException extends RuntimeException
@@ -14,7 +15,11 @@ class DealerInventoryServiceException extends RuntimeException
 
     public function __construct($responseBody, $responseCode)
     {
-        $this->responseBody = \GuzzleHttp\json_decode($responseBody, true);
+        try {
+            $this->responseBody = \GuzzleHttp\json_decode($responseBody, true);
+        } catch (InvalidArgumentException $e) {
+            $this->responseBody = $responseBody;
+        }
         $this->responseCode = $responseCode;
 
         parent::__construct($responseBody." [HTTP $responseCode]", 0, null);
