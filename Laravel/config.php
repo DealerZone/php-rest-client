@@ -8,4 +8,6 @@ return [
 
     'cache_minutes' => 45,
 
+    'tags' => false,
+
 ];

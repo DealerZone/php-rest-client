@@ -33,7 +33,7 @@ class CachedDealerInventoryClient extends DealerInventory
      */
     public function featured()
     {
-        return $this->cache->remember($this->cachePrefix.'.featured', Carbon::now()->addMinutes($this->cacheMinutes), function() {
+        return $this->cache()->remember($this->cachePrefix.'.featured', Carbon::now()->addMinutes($this->cacheMinutes), function() {
             return parent::featured();
         });
     }
@@ -43,7 +43,7 @@ class CachedDealerInventoryClient extends DealerInventory
      */
     public function sold(int $page)
     {
-        return $this->cache->remember($this->cachePrefix.'.sold.'.$page, Carbon::now()->addMinutes($this->cacheMinutes * 2), function() use($page) {
+        return $this->cache()->remember($this->cachePrefix.'.sold.'.$page, Carbon::now()->addMinutes($this->cacheMinutes * 2), function() use($page) {
             return parent::sold($page);
         });
     }
@@ -53,7 +53,7 @@ class CachedDealerInventoryClient extends DealerInventory
      */
     public function categories()
     {
-        return $this->cache->remember($this->cachePrefix.'.categories', Carbon::now()->addMinutes($this->cacheMinutes * 10), function() {
+        return $this->cache()->remember($this->cachePrefix.'.categories', Carbon::now()->addMinutes($this->cacheMinutes * 10), function() {
             return parent::categories();
         });
     }
@@ -63,7 +63,7 @@ class CachedDealerInventoryClient extends DealerInventory
      */
     public function info()
     {
-        return $this->cache->remember($this->cachePrefix.'.info', Carbon::now()->addMinutes($this->cacheMinutes), function() {
+        return $this->cache()->remember($this->cachePrefix.'.info', Carbon::now()->addMinutes($this->cacheMinutes), function() {
             return parent::info();
         });
     }
@@ -73,7 +73,7 @@ class CachedDealerInventoryClient extends DealerInventory
      */
     public function vehicle($slug)
     {
-        return $this->cache->remember($this->cachePrefix.'.vehicle.'.$slug, Carbon::now()->addMinutes($this->cacheMinutes), function() use($slug) {
+        return $this->cache()->remember($this->cachePrefix.'.vehicle.'.$slug, Carbon::now()->addMinutes($this->cacheMinutes), function() use($slug) {
             return parent::vehicle($slug);
         });
     }
@@ -83,7 +83,7 @@ class CachedDealerInventoryClient extends DealerInventory
      */
     public function related($slug)
     {
-        return $this->cache->remember($this->cachePrefix.'.related.'.$slug, Carbon::now()->addMinutes($this->cacheMinutes * 4), function() use($slug) {
+        return $this->cache()->remember($this->cachePrefix.'.related.'.$slug, Carbon::now()->addMinutes($this->cacheMinutes * 4), function() use($slug) {
             return parent::related($slug);
         });
     }
@@ -93,8 +93,23 @@ class CachedDealerInventoryClient extends DealerInventory
      */
     public function make($slug)
     {
-        return $this->cache->remember($this->cachePrefix.'.make.'.$slug, Carbon::now()->addMinutes($this->cacheMinutes), function() use($slug) {
+        return $this->cache()->remember($this->cachePrefix.'.make.'.$slug, Carbon::now()->addMinutes($this->cacheMinutes), function() use($slug) {
             return parent::make($slug);
         });
+    }
+
+    private function cache(): Repository
+    {
+        $tags = config('dealerinventory.tags');
+
+        if(empty($tags)) {
+            return $this->cache;
+        }
+
+        if($tags === true) {
+            return $this->cache->tags(['dealerinventory']);
+        }
+
+        return $this->cache->tags($tags);
     }
 }
