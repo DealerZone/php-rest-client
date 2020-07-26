@@ -176,6 +176,26 @@ class DealerInventory
     }
 
     /**
+     * @return Collection
+     */
+    public function availableAutoParts()
+    {
+        $data = $this->getData('auto-parts/available');
+
+        return (new Collection($data))->map(function($attributes){
+            return new CategoryDto($attributes);
+        });
+    }
+
+    /**
+     * @param $slug
+     */
+    public function autoPart($slug)
+    {
+
+    }
+
+    /**
      * @param MessageDto $message
      */
     public function message($message)
