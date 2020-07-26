@@ -3,6 +3,7 @@
 namespace DealerInventory\Client;
 
 use DealerInventory\Client\Collection\PaginationCollection;
+use DealerInventory\Client\Dto\AutoPartDto;
 use DealerInventory\Client\Dto\MessageDto;
 use DealerInventory\Client\Dto\RelatedDto;
 use DealerInventory\Client\Exception\DealerInventoryServiceException;
@@ -180,10 +181,10 @@ class DealerInventory
      */
     public function availableAutoParts()
     {
-        $data = $this->getData('auto-parts/available');
+        $data = $this->getData('auto-part/available');
 
         return (new Collection($data))->map(function($attributes){
-            return new CategoryDto($attributes);
+            return new AutoPartDto($attributes);
         });
     }
 
@@ -192,7 +193,9 @@ class DealerInventory
      */
     public function autoPart($slug)
     {
+        $data = $this->getData('auto-part/show/'.$slug);
 
+        return new AutoPartDto($data);
     }
 
     /**
