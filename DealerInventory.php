@@ -177,14 +177,23 @@ class DealerInventory
     }
 
     /**
-     * @return Collection
+     * @return PaginationCollection
      */
-    public function availableAutoParts()
+    public function availableAutoParts($page = 1, $filters = [])
     {
-        $data = $this->getData('auto-part/available');
+        unset($filters['page']);
+        $params = http_build_query((array) $filters);
 
-        return (new Collection($data))->map(function($attributes){
-            return new AutoPartDto($attributes);
+        $result = $this->get("auto-part/available?page=$page&$params");
+
+        $collection = new PaginationCollection(
+            $result['data'],
+            $result['meta'],
+            $result['links']
+        );
+
+        return $collection->map(function($value){
+            return new AutoPartDto($value);
         });
     }
 
