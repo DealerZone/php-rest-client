@@ -34,6 +34,7 @@ use Tightenco\Collect\Support\Collection;
  * @property-read string msrp
  * @property-read string invoice
  * @property-read string title_status
+ * @property-read string condition
  * @property-read string description
  * @property-read string description_one_line
  * @property-read string damage_type
