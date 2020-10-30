@@ -89,9 +89,9 @@ class DealerInventory
      * @param string $slug
      * @return Collection|RelatedDto[]
      */
-    public function related($slug)
+    public function related($slug, $limit = 5)
     {
-        $result = $this->get("vehicle/related/$slug");
+        $result = $this->get("vehicle/related/$slug?limit=".$limit);
 
         $collection = new Collection($result['data']);
 
