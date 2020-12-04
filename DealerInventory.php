@@ -104,6 +104,19 @@ class DealerInventory
      * @param integer page
      * @param Filters|array filters
      * @return PaginationCollection|VehicleDto[]
+     *
+     * Filters:
+     *   price
+     *   sort
+     *   make
+     *   model
+     *   recent
+     *   search
+     *   category
+     *   location
+     *   title
+     *   condition
+     *   stock_number
      */
     public function listed(int $page, $filters = [])
     {
