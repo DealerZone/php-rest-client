@@ -12,17 +12,13 @@ class PaginationCollection extends Collection
     /** @var Meta */
     private $meta;
 
-    public function __construct($data = [], $meta = null, $links = null)
+    public function __construct($data = [], $meta = [], $links = [])
     {
         parent::__construct($data);
 
-        if($meta) {
-            $this->setMeta($meta);
-        }
+        $this->setMeta($meta);
 
-        if($links) {
-            $this->setLinks($links);
-        }
+        $this->setLinks($links);
     }
 
     /**
