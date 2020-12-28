@@ -2,6 +2,7 @@
 
 namespace DealerInventory\Client;
 
+use App\Client\Dto\FindDto;
 use DealerInventory\Client\Collection\PaginationCollection;
 use DealerInventory\Client\Dto\AutoPartDto;
 use DealerInventory\Client\Dto\MessageDto;
@@ -83,6 +84,20 @@ class DealerInventory
         return new VehicleDto(
             $this->getData('vehicle/show/'.$slug)
         );
+    }
+
+    /**
+     * @param array $parameters
+     * @return FindDto
+     */
+    public function find($parameters)
+    {
+        $response = $this->post('vehicle/find', $parameters);
+
+        return new FindDto([
+            'success' => $response['success'],
+            'vehicle' => new RelatedDto($response['data']),
+        ]);
     }
 
     /**
