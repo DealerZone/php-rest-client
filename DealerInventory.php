@@ -2,9 +2,9 @@
 
 namespace DealerInventory\Client;
 
-use App\Client\Dto\FindDto;
 use DealerInventory\Client\Collection\PaginationCollection;
 use DealerInventory\Client\Dto\AutoPartDto;
+use DealerInventory\Client\Dto\FindDto;
 use DealerInventory\Client\Dto\MessageDto;
 use DealerInventory\Client\Dto\RelatedDto;
 use DealerInventory\Client\Exception\DealerInventoryServiceException;
