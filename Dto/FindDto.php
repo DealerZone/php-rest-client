@@ -1,8 +1,6 @@
 <?php
 
-namespace App\Client\Dto;
-
-use DealerInventory\Client\Dto\Base;
+namespace DealerInventory\Client\Dto;
 
 /**
  * @property-read boolean success
