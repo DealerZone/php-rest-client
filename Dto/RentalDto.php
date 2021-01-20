@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 /**
  * @property string slug
  * @property string name
+ * @property string description_html
  * @property string price_per_day
  * @property integer passengers
  * @property integer luggages how many luggage bags does it fit
