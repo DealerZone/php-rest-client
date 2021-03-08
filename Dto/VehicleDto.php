@@ -17,6 +17,7 @@ use Tightenco\Collect\Support\Collection;
  * @property-read string trim
  * @property-read string style
  * @property-read string body
+ * @property-read string category_slug
  * @property-read string drivetrain
  * @property-read string doors
  * @property-read string engine
