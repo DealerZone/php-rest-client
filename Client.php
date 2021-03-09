@@ -10,14 +10,14 @@ class Client
 {
     protected static $dns = 'https://dealerinventory.app';
 
-    protected $clientKey;
+    protected $dealerKey;
 
     /** @var \GuzzleHttp\Client */
     protected $guzzle;
 
-    public function __construct(string $clientKey)
+    public function __construct(string $dealerKey)
     {
-        $this->clientKey = $clientKey;
+        $this->dealerKey = $dealerKey;
     }
 
     protected function get(string $path): array
@@ -69,9 +69,9 @@ class Client
     {
         if(empty($this->guzzle)) {
             $this->guzzle = new \GuzzleHttp\Client([
-                'base_uri' => self::dns() . '/api/' . $this->clientKey . '/',
+                'base_uri' => self::dns() . '/api/' . $this->dealerKey . '/',
                 'headers' => [
-                    'X-Client-Key' => $this->clientKey,
+                    'X-Client-Key' => $this->dealerKey,
                     'User-Agent' => 'PHP-DealerInventory-Client PHP/' . PHP_VERSION,
                 ]
             ]);

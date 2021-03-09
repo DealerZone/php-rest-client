@@ -2,7 +2,7 @@
 
 return [
 
-    'client_key' => '', // Your dealer client key
+    'dealer_key' => '', // Your dealer client key
 
     'cache_prefix' => 'dealerinventory',
 

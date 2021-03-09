@@ -9,7 +9,7 @@ composer require dealerinventory/client
 ### Quick Example:
 
 ```
-$client = new DealerInventory('client_key');
+$client = new DealerInventory('dealer_key');
 
 $info = $client->info();
 

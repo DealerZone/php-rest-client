@@ -17,9 +17,9 @@ class CachedDealerInventoryClient extends DealerInventory
     /** @var string */
     private $cachePrefix;
 
-    public function __construct(string $clientKey, Repository $cache)
+    public function __construct(string $dealerKey, Repository $cache)
     {
-        parent::__construct($clientKey);
+        parent::__construct($dealerKey);
 
         $this->cache = $cache;
 
