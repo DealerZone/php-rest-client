@@ -50,6 +50,7 @@ use Tightenco\Collect\Support\Collection;
  * @property-read boolean is_sold
  * @property-read boolean is_on_hold
  * @property-read boolean is_repaired
+ * @property-read boolean lot_drives
  * @property-read array installed_options
  * @property-read LocationDto location
  * @property-read ImageDto main_image
