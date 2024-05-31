@@ -2,7 +2,7 @@
 
 namespace DealerInventory\Client\Collection;
 
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 class PaginationCollection extends Collection
 {

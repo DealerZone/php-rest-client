@@ -12,7 +12,7 @@ use DealerInventory\Client\Dto\InfoDto;
 use DealerInventory\Client\Dto\MakeDto;
 use DealerInventory\Client\Dto\ModelDto;
 use GuzzleHttp\RequestOptions;
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 use DealerInventory\Client\Dto\VehicleDto;
 use DealerInventory\Client\Dto\CategoryDto;
 

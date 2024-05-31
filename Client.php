@@ -72,7 +72,7 @@ class Client
                 'base_uri' => self::dns() . '/api/' . $this->dealerKey . '/',
                 'headers' => [
                     'X-Client-Key' => $this->dealerKey,
-                    'User-Agent' => 'PHP-DealerInventory-Client PHP/' . PHP_VERSION,
+                    'User-Agent' => 'DealerInventory-Client PHP/' . PHP_VERSION,
                 ]
             ]);
         }

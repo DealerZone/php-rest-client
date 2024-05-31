@@ -2,10 +2,10 @@
 
 namespace DealerInventory\Client\Dto;
 
+use Illuminate\Contracts\Support\Arrayable;
 use JsonSerializable;
 use RuntimeException;
-use Tightenco\Collect\Contracts\Support\Arrayable;
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 abstract class Base implements JsonSerializable, Arrayable
 {
@@ -104,11 +104,15 @@ abstract class Base implements JsonSerializable, Arrayable
 
     private function cast(string $field, $value)
     {
+        if(is_null($value)) {
+            return $value;
+        }
+
         if(array_key_exists($field, $this->casts)) {
             $castTo = $this->casts[$field];
 
             // maybe, if numeric index, do a collection of objects
-            // then if string indexed to a object
+            // then if string indexed to an object
             // that might be a better way, but i don't know how to handle empty arrays
             if(is_array($castTo)) {
                 $value = (new Collection($value))->mapInto($castTo[0]);

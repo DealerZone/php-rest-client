@@ -2,7 +2,7 @@
 
 namespace DealerInventory\Client\Dto;
 
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 /**
  * @property-read string slug
@@ -54,6 +54,7 @@ use Tightenco\Collect\Support\Collection;
  * @property-read array installed_options
  * @property-read LocationDto location
  * @property-read ImageDto main_image
+ * @property-read VideoDto video
  * @property-read ImageDto[]|Collection images
  * @property-read CategoryDto[]|Collection categories
  */
@@ -63,6 +64,7 @@ class VehicleDto extends Base
         'main_image' => ImageDto::class,
         'location' => LocationDto::class,
         'images' => [ImageDto::class],
+        'video' => [VideoDto::class],
         'categories' => [CategoryDto::class],
     ];
 }

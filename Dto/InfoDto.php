@@ -2,7 +2,7 @@
 
 namespace DealerInventory\Client\Dto;
 
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 /**
  * @property-read string key

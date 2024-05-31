@@ -1,11 +1,12 @@
 {
-    "name": "dealerinventory/client",
-    "type": "library",
-    "license": "MIT",
-    "keywords": ["dealer", "vehicle"],
-    "description": "PHP client for the dealerinventory.app service API.",
-    "require": {
-        "tightenco/collect" : "*",
+  "name": "dealerinventory/client",
+  "type": "library",
+  "license": "MIT",
+  "keywords": ["dealer", "vehicle"],
+  "description": "PHP client for the DealerZone.com service API.",
+  "require": {
+        "illuminate/collections" : "*",
+        "illuminate/contracts" : "*",
         "guzzlehttp/guzzle" : "*"
     },
     "autoload": {
